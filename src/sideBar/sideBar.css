@@ -1,0 +1,32 @@
+.sidebar {
+  width: 400px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #ffffff24;
+  padding: 20px;
+  z-index: 9999;
+}
+
+.current-file {
+  position: relative;
+  left: 200px;
+  top: 30%;
+  z-index: 9999;
+  font-size: 72px;
+}
+
+.button-with-picture-wrap {
+  position: relative;
+  top: 500px;
+  display: flex;
+  margin-left: 10px;
+  flex-direction: column;
+}
+
+.button-with-picture {
+  margin: 10px;
+  width: 40px;
+  
+}

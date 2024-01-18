@@ -1,3 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
+:root {
+  --backgroud-color: hsl(231, 16%, 24%);
+  --green-color: cadetblue;
+  --secondary-color: #bbbbbb;
+  --bg-color-of-lists-in-skills-section: hsl(229, 12%, 37%);
+  --card-bg-color: #232432;
+
+  --bg-color-for-form-inputs: #ffffff24;
+  --border-color-for-form-inputs: #c4c4c44a;
+}
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--backgroud-color);
+}
+
 /* App.css */
 .App {
   text-align: center;
@@ -16,9 +35,36 @@ html {
 }
 
 canvas {
-  display: block;
-  width: 100%;
   height: 100vh;
   border-width: 1px;
   border-radius: 4px;
+  justify-content: center;
+}
+
+.btn {
+  justify-content: center;
+  text-align: center;
+  margin: 10px;
+  font-size: 20px;
+  background-color: transparent;
+  color: aliceblue;
+}
+
+.zoom-in-out-btn {
+  justify-content: center;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  margin-left: 10px;
+  flex-direction: column;
+  background-color: transparent;
+  padding-left: 9px;
+  color: aliceblue;
+}
+
+.canvas-container {
+  position: relative;
+  height: "100vh";
+  left: 450px;
 }

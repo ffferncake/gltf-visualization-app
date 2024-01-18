@@ -2,7 +2,13 @@ import React, { useRef, useState } from "react";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader";
 import { Canvas, useLoader } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 import "../App.css";
+import "../sideBar/sideBar.css";
+import GithubIcon from "../icon/Github-Negative.png";
+import InstagramIcon from "../icon/Instagram-Negative.png";
+import MediumIcon from "../icon/Medium-Negative.png";
+import LinkedInIcon from "../icon/LinkedIn-Negative.png";
 
 const modelFiles = [
   "/models/smallHouseDesign.gltf",
@@ -18,7 +24,7 @@ function GLTFViewer() {
   const [currentModelFileName, setCurrentModelFileName] = useState(
     modelFiles[0]
   );
-  const [modelScale, setModelScale] = useState(0.08); // Set the default zoom level here
+  const [modelScale, setModelScale] = useState(0.1); // Set the default zoom level here
   const canvasRef = useRef();
 
   const loadNextModel = async () => {
@@ -66,7 +72,7 @@ function GLTFViewer() {
   };
 
   return (
-    <div style={{ position: "relative", height: "100vh" }}>
+    <div className="canvas-container">
       <Canvas
         ref={canvasRef}
         camera={{ position: [0, 2, 0], rotation: [Math.PI, Math.PI, 0] }}
@@ -78,7 +84,7 @@ function GLTFViewer() {
         />
         <primitive
           object={useLoader(GLTFLoader, modelFiles[currentModelIndex]).scene}
-          position={[0, 0, 0]}
+          position={[-0.6,0.1, 0.3]}
           rotation={[Math.PI, 0, 0]}
           scale={[modelScale, modelScale, modelScale]} // Apply the scale here
         />
@@ -86,7 +92,6 @@ function GLTFViewer() {
         <OrbitControls />
         <axesHelper args={[5]} />
       </Canvas>
-
       {/* Conditional rendering of loading indicator */}
       {isLoading && (
         <div
@@ -105,27 +110,57 @@ function GLTFViewer() {
           {/* You can add loading icons here */}
         </div>
       )}
-
-      {/* Display current model file name */}
-      <div
-        style={{
-          position: "absolute",
-          top: "10px",
-          left: "10px",
-          zIndex: "9999", // Ensure it's on top
-          backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background
-          padding: "10px",
-          borderRadius: "5px",
-        }}
-      >
-        Current Model: {currentModelFileName}
-      </div>
-
-      <div style={{ position: "absolute", top: 60, left: 10 }}>
-        <button onClick={handlePreviousModel}>Previous Model</button>
-        <button onClick={handleNextModel}>Next Model</button>
-        <button onClick={zoomIn}>Zoom In</button>
-        <button onClick={zoomOut}>Zoom Out</button>
+      <div className="sidebar">
+        {/* Display current model file name */}
+        <div className="current-file">
+          Current Model: {currentModelFileName}
+        </div>
+        <div style={{ position: "absolute", top: 20, left: 10 }}>
+          <button className="btn" onClick={handlePreviousModel}>
+            👈 Previous Model
+          </button>
+          <button className="btn" onClick={handleNextModel}>
+            Next Model 👉
+          </button>
+          <div>
+            <button className="zoom-in-out-btn" onClick={zoomIn}>
+              +
+            </button>
+            <button className="zoom-in-out-btn" onClick={zoomOut}>
+              -
+            </button>{" "}
+          </div>
+          <div className="button-with-picture-wrap">
+            <div className="button-with-picture">
+              <a href="https://github.com/ffferncake">
+                <img src={GithubIcon} alt="github" className="button-image" />
+              </a>
+            </div>
+            <div className="button-with-picture">
+              <a href="https://www.linkedin.com/in/nichanun-trakulphudphong/">
+                <img
+                  src={LinkedInIcon}
+                  alt="linkedin"
+                  className="button-image"
+                />
+              </a>
+            </div>
+            <div className="button-with-picture">
+              <a href="https://www.instagram.com/ferncake/">
+                <img
+                  src={InstagramIcon}
+                  alt="instagram"
+                  className="button-image"
+                />
+              </a>
+            </div>
+            <div className="button-with-picture">
+              <a href="https://medium.com/@fernnichanun">
+                <img src={MediumIcon} alt="medium" className="button-image" />
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
